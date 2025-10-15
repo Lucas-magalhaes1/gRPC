@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Oag8EsaTi+zcflRuD9gMkd4OOlwgQVw1zm7M4I3NRGE=",
+  "Source": "Tasks.Server",
+  "BasePath": "_content/Tasks.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

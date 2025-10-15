@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option csharp_namespace = "Tasks.Proto";
+
+package tasks;
+
+message Task {
+  string id = 1;
+  string titulo = 2;
+  string descricao = 3;
+  Status status = 4;
+  string data_criacao = 5; // simples (string)
+}
+
+enum Status {
+  STATUS_INDEFINIDO = 0;
+  PENDENTE = 1;
+  CONCLUIDA = 2;
+}
+
+message CreateTaskRequest {
+  string titulo = 1;
+  string descricao = 2;
+}
+
+message CreateTaskResponse {
+  Task task = 1;
+}
+
+message GetTaskRequest {
+  string id = 1;
+}
+
+message GetTaskResponse {
+  Task task = 1;
+}
+
+message ListTasksRequest {
+  Status status = 1; 
+  int32 limite = 2;  
+  int32 offset = 3;  
+}
+
+message UpdateTaskRequest {
+  string id = 1;
+  string titulo = 2;
+  string descricao = 3;
+  Status status = 4;
+}
+
+message UpdateTaskResponse {
+  Task task = 1;
+}
+
+service TaskService {
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse); // unária
+  rpc GetTask    (GetTaskRequest)    returns (GetTaskResponse);    
+  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse); 
+
+  // Para cobrir streaming ListTasks como SERVER-STREAMING:
+  rpc ListTasks  (ListTasksRequest)  returns (stream Task);
+}
